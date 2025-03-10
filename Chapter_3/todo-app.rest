@@ -1,0 +1,21 @@
+### GET/
+GET http://localhost:5003
+
+### POST REGISTER
+POST http://localhost:5003/auth/register
+Content-Type:application/json
+
+{
+    "username":"gilgamesh@gmail.com",
+    "password":"123"
+}
+
+
+### login
+POST http://localhost:5003/auth/login
+Content-Type:application/json
+
+{
+    "username":"gilgamesh@gmail.com",
+    "password":"123"
+}
