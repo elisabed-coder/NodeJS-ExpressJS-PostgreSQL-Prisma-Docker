@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
   res.json(todos);
 });
 
+//Create new to do
 router.post("/", (req, res) => {
   const { task } = req.body;
   const insertTodo = db.prepare(
@@ -21,12 +22,15 @@ router.post("/", (req, res) => {
   res.json({ id: result.lastInsertRowid, task, completed: 0 });
 });
 
+//update a todo's status to completed
 router.put("/:id", (res, req) => {
   const { completed } = req.body;
   const { id } = req.params;
   const { page } = req.query;
 
-  const updatedTodo = db.prepare(`UPDATE todos SET completed=?`);
+  const updatedTodo = db.prepare(
+    `UPDATE todos SET completed=? WHERE id=? AND user_id=? `
+  );
   updatedTodo.run(completed, id);
   res.josn({ message: "todo Completed" });
 });
